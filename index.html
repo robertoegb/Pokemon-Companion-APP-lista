@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Pokémon Companion</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Roboto:wght@400;700&display=swap');
+      
+      html, body {
+        background-color: #202020;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow-x: hidden;
+        touch-action: manipulation;
+      }
+      
+      .font-pixel {
+        font-family: 'Press Start 2P', cursive;
+      }
+
+      .pixelated {
+        image-rendering: pixelated;
+        image-rendering: -moz-crisp-edges;
+        image-rendering: crisp-edges;
+      }
+
+      /* ANIMACIONES DE COMBATE */
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-8px); }
+        75% { transform: translateX(8px); }
+      }
+      .shake {
+        animation: shake 0.1s ease-in-out infinite;
+      }
+
+      @keyframes flash-damage {
+        0%, 100% { filter: brightness(1); }
+        50% { filter: brightness(2) contrast(1.5); }
+      }
+      .flash-damage {
+        animation: flash-damage 0.15s ease-in-out infinite;
+      }
+
+      /* ANIMACIONES SPLASH */
+      @keyframes letter-in {
+        from { opacity: 0; transform: translateX(-20px); }
+        to { opacity: 1; transform: translateX(0); }
+      }
+      .letter-anim {
+        display: inline-block;
+        opacity: 0;
+        animation: letter-in 0.3s forwards;
+      }
+
+      @keyframes pokeball-roll {
+        0% { transform: translateX(200vw) rotate(0deg); opacity: 0; }
+        1% { opacity: 1; }
+        100% { transform: translateX(0) rotate(-720deg); opacity: 1; }
+      }
+      .roll-in {
+        opacity: 0;
+        animation: pokeball-roll 1.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+      }
+
+      /* ANIMACIONES CARGA (Ciclo 4s: 2s mov + 2s pausa) */
+      @keyframes join-top-layer {
+        0% { transform: translateX(100vw); opacity: 0; }
+        5% { opacity: 1; }
+        12.5% { transform: translateX(0); } 
+        37.5% { transform: translateX(0) rotate(-360deg); } 
+        50% { transform: translateX(-100vw); } 
+        100% { transform: translateX(-100vw); } 
+      }
+      @keyframes join-bottom-layer {
+        0% { transform: translateX(-100vw); opacity: 0; }
+        5% { opacity: 1; }
+        12.5% { transform: translateX(0); } 
+        37.5% { transform: translateX(0) rotate(-360deg); } 
+        50% { transform: translateX(100vw); } 
+        100% { transform: translateX(100vw); } 
+      }
+      
+      .ball-layer-top {
+        animation: join-top-layer 4s infinite linear;
+      }
+      .ball-layer-bottom {
+        animation: join-bottom-layer 4s infinite linear;
+      }
+
+      /* Máscara de hueco reducida: 18px de radio (36px total) */
+      .with-button-hole {
+        mask-image: radial-gradient(circle 18px at 50% 100%, transparent 100%, black 100%);
+        -webkit-mask-image: radial-gradient(circle 18px at 50% 100%, transparent 100%, black 100%);
+      }
+
+      .no-scrollbar::-webkit-scrollbar { display: none; }
+      .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+    <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "firebase/": "https://esm.sh/firebase@^12.7.0/",
+    "fs": "https://esm.sh/fs@^0.0.1-security",
+    "path": "https://esm.sh/path@^0.12.7"
+  }
+}
+</script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="./index.tsx"></script>
+  </body>
+</html>

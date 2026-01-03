@@ -1,0 +1,7 @@
+{
+  "name": "Pokémon Companion",
+  "description": "A mobile-first Pokémon RPG featuring AI-narrated battles and social trading.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
